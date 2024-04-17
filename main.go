@@ -23,7 +23,6 @@ func setupRouter() *gin.Engine {
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer db.Close()
 
 	fmt.Println("DB connected", db)
 
@@ -32,7 +31,7 @@ func setupRouter() *gin.Engine {
 		c.String(200, "pong")
 	})
 
-	routes.PostRoutes(r)
+	routes.PostRoutes(r, db)
 	return r
 }
 
